@@ -1,0 +1,53 @@
+<div ng-include src="'views/common/menubar.html'"></div>
+<button class="btn btn-warning" ng-click="newDialog()">弹出层</button>
+<!-- grid start -->
+<div> <!-- 这里不能再加 data-ng-controller="DemoCtrl" 否则会执行2次,路由1次,初始化1次 -->
+  <p>
+
+  <div>
+    <alert ng-repeat="alert in successAlerts" type="{{alert.type}}" close="closeSuccessAlert()">{{alert.msg}}</alert>
+  </div>
+  </p>
+  <table st-table="rowCollection" class="table">
+    <thead>
+    <tr>
+      <!--<th></th>-->
+      <!--<th><input type="checkbox" ></th>-->
+      <th>Id</th>
+      <th>IP</th>
+      <th>描述</th>
+      <th>心跳</th>
+      <th>生效</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="row in rowCollection ">
+      <!--<td><input type="checkbox" data-ng-click="check(row.id,chk)" data-ng-model="chk" ></td>-->
+      <td>{{row.id }}</td>
+      <td>{{row.ip}}</td>
+      <td>{{row.hostname}}</td>
+      <td ><p ng-bind-html = "row.heartbeatTime | renderHeartbeat"></p></td>
+      <td>{{row.isEnable | renderIsEnable }}</td>
+      <td>
+        <button type="button" ng-click="newDialog(row.id)" class="btn btn-sm btn-warning" >
+          <i class="glyphicon glyphicon-edit">
+          </i>
+        </button>
+        <a ng-href="#/someUrl?bussId={{row.id}}&serverIp={{row.ip}}" target="_blank" class="btn btn-sm btn-primary">
+          <i class="glyphicon glyphicon-eye-open">
+          </i>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="7" class="text-center">
+        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+<!-- 弹出层 -->
+<div ng-include src="'views/demo/new-dialog.html'"></div>

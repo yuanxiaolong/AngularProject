@@ -1,0 +1,24 @@
+<div ng-include src="'views/common/menubar.html'"></div>
+
+
+<div>
+  <div id='chart-overview-line' style='height:300px'></div>
+  <p>
+  <form action="" class="am-form am-form-inline">
+    <label class="col-sm-2 control-label">BussNo</label>
+    <div class="am-form-group">
+      <select class="form-control" ng-model="bNo" ng-options="type.dataTypeName as type.dataTypeName for type in types">
+        <option value="0">请选择</option>
+      </select>
+    </div>
+    <div class="am-form-group">
+      <button type="button" class="am-btn am-btn-primary" ng-click="redraw()" >确定</button>
+    </div>
+  </form>
+  </p>
+
+  <div id='chart-overview-bar' style='height:300px'></div>
+</div>
+
+
+
